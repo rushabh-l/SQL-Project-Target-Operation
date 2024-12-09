@@ -1,0 +1,82 @@
+Column Descriptions :-
+
+# customers.csv :-  99441 rows and 5 columns
+
+customer_id: ID of the consumer who made the purchase.
+customer_unique_id: Unique ID of the consumer.
+customer_zip_code_prefix: Zip Code of the consumer’s location.
+customer_city: Name of the city from where the order was made.
+customer_state: State code from where the order was made.
+
+# sellers.csv:   3095 rows and 4 columns
+
+seller_id: Unique ID of the seller.
+seller_zip_code_prefix: Zip Code of the seller’s location.
+seller_city: Name of the city of the seller.
+seller_state: State code.
+
+# order_items.csv :-      1,12,650 rows and 7 columns
+
+order_id : Unique ID of the order.
+order_item_id : Unique ID of each item ordered.
+product_id : Unique ID of each product.
+seller_id : Unique ID of the seller.
+shipping_limit_date : Date before which the product must be shipped.
+price : Price of the products ordered.
+freight_value : Freight cost for delivery.
+
+# geolocations.csv :-   1000163 rows and 5 columns 
+geolocation_zip_code_prefix: First 5 digits of Zip Code.
+geolocation_lat: Latitude.
+geolocation_lng: Longitude.
+geolocation_city: City.
+geolocation_state: State.
+
+# payments.csv :- 	103886 rows and 5 columns	
+
+order_id: Unique ID of the order.
+payment_sequential: Sequences of payments in case of EMI.
+payment_type: Mode of payment used.
+payment_installments: Number of installments for EMI purchase.
+payment_value: Total amount paid for the purchase order.
+
+# orders.csv :- 	99441 rows and 8 columns	
+
+order_id: Unique ID of the order.		
+customer_id: ID of the consumer who made the purchase.
+order_status: Status of the order.
+order_purchase_timestamp: Timestamp of the purchase.
+order_delivered_carrier_date: Delivery date at which carrier made the delivery.
+order_delivered_customer_date: Date at which customer received the product.
+order_estimated_delivery_date: Estimated delivery date.
+
+# reviews.csv :-	  99224 rows and 6 columns
+
+review_id: ID of the review.
+order_id: Unique ID of the order.
+review_score: Review score given by the customer.
+review_comment_title: Title of the review.
+review_comment_message: Review comments.    ---- this column not included in dataset
+review_creation_date: Timestamp of the review creation.
+review_answer_timestamp: Timestamp of the review answered.
+
+# products.csv :- 	32951 rows 9 columns	
+
+product_id: Unique identifier for the product.
+product_category_name: Name of the product category.
+product_name_length: Length of the product name.
+product_description_length: Length of the product description.
+product_photos_qty: Number of photos of each product.
+product_weight_g: Weight of the product in grams.
+product_length_cm: Length of the product in centimeters.
+product_height_cm: Height of the product in centimeters.
+product_width_cm: Width of the product in centimeters.
+
+select * from customers	
+select * from sellers
+select * from order_items
+select * from payments
+select * from reviews
+select * from products	
+select * from orders
+select * from geolocation
