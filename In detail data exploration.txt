@@ -1,0 +1,111 @@
+select * from customers		-- in customers table no null values present
+-- distinct customer_city are 4119, distinct customer_state are 27
+
+select * from sellers 	-- in sellers table no null values present
+-- 611 distinct seller_city and 23 distinct seller_state
+
+select * from order_items 	-- in this order_items table no null values present
+-- order_item_id in this table are from 1 to 21
+--min(shipping_limit_date) is = 2016-09-19 00:15:34.0000000   
+--max(shipping_limit_date) is = 2020-04-09 22:35:08.0000000
+--max(price) is = 6735
+--min(price) is = 0.850000023841858
+--max(freight_value) is = 409.679992675781
+--min(freight_value) is = 0
+
+
+select * from payments 
+-- in payments table i.e. order_id no null values are present
+-- 2961 duplicates order_id
+-- payment_sequential is from 1 to 29
+-- payment types are -- credit_card, not_defined, debit_card, UPI, voucher
+-- payment_installments from 0 to 24 
+-- min(payment_value) is = 0 
+-- max(payment_value) is = 13664.080078125
+
+
+select * from reviews
+-- 789 records of duplicate review_id
+-- 547 records of duplicate order_id
+-- distinct review_score is 1 to 5
+-- null values count in review_comment_title column is 87675
+-- distinct review_comment_title count is 3090
+-- more than 611 customers review are same 
+-- min(review_creation_date) is 2001-01-18 00:00:00.0000000
+-- max(review_creation_date) is 2031-12-17 00:00:00.0000000
+-- min(review_answer_timestamp) is 2001-01-18 00:03:00.0000000
+-- max(review_answer_timestamp) is 2031-12-17 23:27:00.0000000
+select max(review_answer_timestamp) from reviews
+
+
+select * from products		--- no duplicate values in product_id column [primary key]
+-- distinct product category are 74
+-- 73 product_category have duplicates values [repeated values]
+-- min(product_name_length) is = 5
+-- max(product_name_length) is = 76
+-- max(product_description_length) is = 3992
+-- min(product_description_length) is = 4
+-- 610 null values in product_photos_qty, product_description_length, product_name_length
+-- min(product_weight_g) is = 0
+-- min(product_weight_g) is = 40425
+-- 2 null value spresent in product_weight_g column, product_length_cm, product_height_cm, product_width_cm
+-- max(product_length_cm) is = 105
+-- min(product_length_cm) is = 7
+-- min(product_height_cm) is = 2
+-- max(product_height_cm) is = 105
+-- max(product_width_cm) is = 118
+-- min(product_width_cm) is = 6
+
+
+select product_width_cm, count(*) from products	
+where product_width_cm is null
+group by product_width_cm
+
+select min(product_width_cm) from products
+
+having count(*) > 1
+
+select * from orders
+-- no duplicates records in the order_id,customer_id columns
+-- distinct order_status are approved, delivered, created, invoiced, processing, unavailable, canceled, shipped
+-- min(order_purchase_timestamp) is = 2016-09-04 21:15:19.0000000 
+-- max(order_purchase_timestamp) is = 2018-10-17 17:30:18.0000000
+-- max(order_approved_at) is = 2018-09-03 17:40:06.0000000
+-- min(order_approved_at) is = 2016-09-15 12:16:38.0000000
+-- order_approved_at this column is having 160 null values
+-- order_delivered_carrier_date is having 1783 null values
+-- min(order_delivered_carrier_date) is = 2016-10-08 10:34:01.0000000
+-- max(order_delivered_carrier_date) is = 2018-09-11 19:48:28.0000000
+-- max(order_delivered_customer_date) is = 2018-10-17 13:22:46.0000000
+-- min(order_delivered_customer_date) is = 2016-10-11 13:46:32.0000000
+-- order_delivered_customer_date has 2965 null values
+-- min(order_estimated_delivery_date) is = 2016-09-30 00:00:00.0000000
+-- max(order_estimated_delivery_date) is = 2018-11-12 00:00:00.0000000
+-- order_estimated_delivery_date no any null values present here  
+
+select customer_id,count(*) from orders
+group by customer_id
+having count(*) > 1
+
+select distinct order_delivered_customer_date from orders
+
+select max(order_estimated_delivery_date) from orders
+
+select order_purchase_timestamp, count(*) from orders	
+where order_purchase_timestamp is null
+group by order_purchase_timestamp
+
+
+select * from geolocation
+-- no null values in geolocation_zip_code_prefix
+-- 17972 rows have duplicates values in geolocation_zip_code_prefix
+-- 1336 rows have null values in geolocation_lat column, duplicates rows are present (169788)
+-- min(geolocation_lat) is -36.6053733825684
+-- max(geolocation_lat) is -4.36737936979625E-05
+-- 3 rows have null values in geolocation_lng column, duplicates rows are present (181730)
+-- max(geolocation_lng) is = -4.9478235244751
+-- min(geolocation_lng) is = -101.466766357422
+-- no null values in geolocation_city and geolocation_state
+-- distinct geolocation_city are 8010, distinct geolocation_state are 27
+-- 
+where geolocation_state is null
